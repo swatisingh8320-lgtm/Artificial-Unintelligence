@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=Nunito:wght@400;500;600;700;800&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-display: 'Dela Gothic One', sans-serif;
+  --font-body: 'Nunito', sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  height: 100%;
+  background: #080614;
+  color: #f0e8ff;
+  font-family: 'Nunito', sans-serif;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #2d1f5e; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #ff2d8a55; }
+
+/* ── Sakura fall ── */
+@keyframes sakura-fall {
+  0%   { transform: translateY(-60px) rotate(0deg) scale(1);   opacity: 0.8; }
+  50%  { transform: translateY(45vh)  rotate(180deg) scale(0.8); opacity: 0.5; }
+  100% { transform: translateY(105vh) rotate(360deg) scale(0.6); opacity: 0; }
+}
+.sakura-petal {
+  position: fixed;
+  top: -60px;
+  pointer-events: none;
+  animation: sakura-fall linear infinite;
+  font-size: 13px;
+  z-index: 0;
+}
+
+/* ── Animations ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-dot {
+  0%, 80%, 100% { transform: scale(0.5); opacity: 0.3; }
+  40%            { transform: scale(1);   opacity: 1; }
+}
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 8px #ff2d8a66, 0 0 24px #ff2d8a22; }
+  50%       { box-shadow: 0 0 16px #ff2d8aaa, 0 0 40px #ff2d8a44; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+@keyframes shimmer-border {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50%       { opacity: 1;   transform: scale(1.2); }
+}
+@keyframes slide-in {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.message-enter    { animation: fadeUp 0.35s ease forwards; }
+.sidebar-enter    { animation: slide-in 0.25s ease forwards; }
+.thinking-dot     { animation: pulse-dot 1.4s ease-in-out infinite; }
+.thinking-dot:nth-child(2) { animation-delay: 0.2s; }
+.thinking-dot:nth-child(3) { animation-delay: 0.4s; }
+.avatar-float     { animation: float 3s ease-in-out infinite; }
+.avatar-glow      { animation: glow-pulse 2.5s ease-in-out infinite; }
+
+/* ── Gradient text ── */
+.gradient-pink  {
+  background: linear-gradient(135deg, #ff2d8a, #ff80c0);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-cyan  {
+  background: linear-gradient(135deg, #00e5ff, #80f0ff);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gradient-title {
+  background: linear-gradient(135deg, #ff2d8a 0%, #bf80ff 50%, #00e5ff 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Manga panel border (AI bubble) ── */
+.manga-bubble {
+  position: relative;
+  border: 2px solid #00e5ff44;
+  background: linear-gradient(135deg, #110e2a, #1a1040);
+  box-shadow: 0 0 12px #00e5ff22, inset 0 0 20px #00e5ff08;
+}
+.manga-bubble::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, #ff2d8a33, #00e5ff44, #bf80ff33);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ── User bubble ── */
+.user-bubble {
+  background: linear-gradient(135deg, #cc1466, #ff2d8a, #ff80c0);
+  box-shadow: 0 4px 20px #ff2d8a44, 0 0 8px #ff2d8a22;
+}
+
+/* ── Impact lines on hover ── */
+.impact-hover {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+.impact-hover:hover {
+  background: linear-gradient(135deg, #ff2d8a15, #bf80ff10) !important;
+  border-color: #ff2d8a44 !important;
+}
+
+/* ── Neon input focus ── */
+.neon-input:focus-within {
+  border-color: #ff2d8a !important;
+  box-shadow: 0 0 0 2px #ff2d8a22, 0 0 20px #ff2d8a22;
+}
+
+textarea {
+  resize: none;
+  font-family: 'Nunito', sans-serif;
+}
+textarea:focus { outline: none; }
+
+/* ── Background stars ── */
+.star {
+  position: fixed;
+  border-radius: 50%;
+  background: #fff;
+  animation: star-twinkle ease-in-out infinite;
+}
